@@ -1,0 +1,9 @@
+/**
+ * 
+ */
+/**
+ * @author avign
+ *
+ */
+module mineExplorer {
+}
