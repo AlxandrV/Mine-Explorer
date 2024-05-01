@@ -11,48 +11,13 @@ public class Game {
   }
 
   public Board launch(Board board) {
-
+    // Place le joueur au centre de la map
     String[][] matrice = board.getMatrice();
     int row = matrice.length / 2;
     int column = matrice[0].length / 2;
     matrice[row][column] = "*";
     board.setMatrice(matrice);
+
     return board;
   }
-
-  // public static void print(Board board) {
-  // for (int i = 0; i < board.getRows(); i++) {
-  // // Ligne horizontale
-  // for (int j = 0; j < board.getColumns(); j++) {
-  // if (i == 0) {
-  // System.out.print("====");
-  // } else if (j == 0) {
-  // System.out.print("¶---");
-  // } else {
-  // System.out.print("+---");
-  // }
-  // }
-  // if (i == 0) {
-  // System.out.println("=");
-  // } else {
-  // System.out.println("¶");
-  // }
-  //
-  // // Contenu de la ligne
-  // for (int j = 0; j < board.getColumns(); j++) {
-  // if (j == 0) {
-  // System.out.print("¶ " + " ");
-  // } else {
-  // System.out.print("| " + " ");
-  // }
-  // }
-  // System.out.println("¶");
-  // }
-  //
-  // // Dernière ligne horizontale
-  // for (int j = 0; j < board.getColumns(); j++) {
-  // System.out.print("====");
-  // }
-  // System.out.println("=");
-  // }
 }
