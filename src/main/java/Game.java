@@ -1,10 +1,9 @@
-package mineExplorer;
+package main.java;
 
 public class Game {
 
-
   public static void main(String[] args) {
-    Board board = new Board();
+    Board board = new Board(5, 7);
     board.setMatrice(new String[5][7]);
     Game game = new Game();
     game.launch(board);

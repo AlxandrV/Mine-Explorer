@@ -1,22 +1,17 @@
 package test;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import mineExplorer.Board;
-import mineExplorer.Game;
+
+import main.java.Board;
+import main.java.Game;
 
 class GameTest {
-
-  @BeforeEach
-  void setUp() throws Exception {}
 
   @Test
   void launchTest() {
     Game game = new Game();
-    Board board = new Board();
-    board.setMatrice(new String[5][7]);
-
+    Board board = new Board(5, 7);
 
     Board boardExpected = game.launch(board);
     String[][] matriceExpected = boardExpected.getMatrice();
@@ -26,5 +21,4 @@ class GameTest {
 
     Assertions.assertEquals("*", matriceExpected[row][column]);
   }
-
 }
