@@ -22,7 +22,13 @@ public class Board {
     }
   }
 
+  public String[][] getMatrice() {
+    return matrice;
+  }
 
+  public void setMatrice(String[][] matrice) {
+    this.matrice = matrice;
+  }
 
   @Override
   public String toString() {
