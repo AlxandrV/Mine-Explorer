@@ -7,7 +7,7 @@ import main.java.Board;
 
 class BoardTest {
 
-  Board board;
+  private Board board;
 
   @Test
   void toStringTestShouldDisplayBoard() {

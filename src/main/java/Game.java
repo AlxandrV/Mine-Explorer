@@ -7,17 +7,11 @@ public class Game {
   private Scanner scanner;
   private Board board;
 
-  Game() {
-    scanner = new Scanner(System.in);
+  public Game(Scanner scanner) {
+    this.scanner = scanner;
   }
 
-  public static void main(String[] args) {
-    Game game = new Game();
-    game.loop();
-
-  }
-
-  private void loop() {
+  public void loop() {
     boolean gameRunning = true;
 
     System.out.print("Nombre de ligne : ");
@@ -33,8 +27,6 @@ public class Game {
         gameRunning = false;
       }
     } while (gameRunning);
-
-    scanner.close();
   }
 
   private int menu() {
