@@ -1,22 +1,51 @@
 package main.java;
 
+import java.util.Scanner;
+
 public class Game {
 
-  public static void main(String[] args) {
-    Board board = new Board(5, 7);
-    board.setMatrice(new String[5][7]);
-    Game game = new Game();
-    game.launch(board);
+  private Scanner scanner;
+  private Board board;
+
+  Game() {
+    scanner = new Scanner(System.in);
   }
 
-  public Board launch(Board board) {
-    // Place le joueur au centre de la map
-    String[][] matrice = board.getMatrice();
-    int row = matrice.length / 2;
-    int column = matrice[0].length / 2;
-    matrice[row][column] = "*";
-    board.setMatrice(matrice);
+  public static void main(String[] args) {
+    Game game = new Game();
+    game.loop();
 
-    return board;
+  }
+
+  private void loop() {
+    boolean gameRunning = true;
+
+    System.out.print("Nombre de ligne : ");
+    int nbRow = scanner.nextInt();
+    System.out.print("Nombre de colonne : ");
+    int nbColumn = scanner.nextInt();
+
+    board = new Board(nbRow, nbColumn);
+
+    do {
+      System.out.println(board);
+      if (menu() == 0) {
+        gameRunning = false;
+      }
+    } while (gameRunning);
+
+    scanner.close();
+  }
+
+  private int menu() {
+    String menu = "----------\n" +
+        "Actions disponibles :\n" +
+        "Quitter[0]\n" +
+        "----------\n";
+
+    System.out.println(menu);
+    int action = scanner.nextInt();
+
+    return action;
   }
 }
