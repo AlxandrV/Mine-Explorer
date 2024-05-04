@@ -1,13 +1,11 @@
-package test;
+package com.project;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import main.java.Board;
-
 class BoardTest {
 
-  Board board;
+  private Board board;
 
   @Test
   void toStringTestShouldDisplayBoard() {
