@@ -14,6 +14,7 @@
     // Github Actions
     "github.vscode-github-actions", // see https://github.com/nektos/act
     // Language Support
-    "vscjava.vscode-java-pack"
+    "vscjava.vscode-java-pack",
+    "vscjava.vscode-maven"
   ]
 }
