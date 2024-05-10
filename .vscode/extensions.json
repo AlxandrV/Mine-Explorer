@@ -1,9 +1,7 @@
 {
   "recommendations": [
     // Linting / Formatting
-    "dbaeumer.vscode-eslint",
     "usernamehw.errorlens",
-    "yoavbls.pretty-ts-errors",
     // PR management / Reviewing
     "github.vscode-pull-request-github",
     // Showing todo comments
