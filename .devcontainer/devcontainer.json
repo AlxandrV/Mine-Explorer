@@ -1,0 +1,8 @@
+{
+  "name": "devcontainer",
+  "dockerComposeFile": "../docker/development/docker-compose.yml",
+  "service": "java-app",
+  "workspaceFolder": "/app",
+  "postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}", // https://github.com/microsoft/vscode-remote-release/issues/6810
+  "postCreateCommand": "sh .devcontainer/install-extensions.sh"
+}
