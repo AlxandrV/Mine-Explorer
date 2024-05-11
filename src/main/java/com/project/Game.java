@@ -6,9 +6,11 @@ public class Game {
 
   private Scanner scanner;
   private Board board;
+  private Player player;
 
   public Game(Scanner scanner) {
     this.scanner = scanner;
+    this.player = new Player();
   }
 
   public void loop() {
@@ -19,7 +21,7 @@ public class Game {
     System.out.print("Nombre de colonne : ");
     int nbColumn = scanner.nextInt();
 
-    board = new Board(nbRow, nbColumn);
+    board = new Board(nbRow, nbColumn, player);
 
     do {
       System.out.println(board);
