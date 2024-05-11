@@ -1,7 +1,5 @@
 package com.project;
 
-import java.util.ArrayList;
-
 public class Board {
 
   private Room[][] matrice;
