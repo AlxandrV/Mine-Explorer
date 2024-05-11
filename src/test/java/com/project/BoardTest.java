@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 class BoardTest {
 
-  private Board board;
+  Board board;
 
   @Test
   void toStringShouldDisplayBoard() {

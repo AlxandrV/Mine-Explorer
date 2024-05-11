@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 class PlayerTest {
 
-  private Player player;
+  Player player;
 
   @Test
   void toStringShouldDisplayPlayer() {
