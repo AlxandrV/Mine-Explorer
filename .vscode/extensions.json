@@ -1,11 +1,10 @@
 {
   "recommendations": [
     // Linting / Formatting
-    "dbaeumer.vscode-eslint",
     "usernamehw.errorlens",
-    "yoavbls.pretty-ts-errors",
     // PR management / Reviewing
     "github.vscode-pull-request-github",
+    "eamodio.gitlens",
     // Showing todo comments
     "gruntfuggly.todo-tree",
     "aaron-bond.better-comments",
@@ -14,7 +13,12 @@
     // Github Actions
     "github.vscode-github-actions", // see https://github.com/nektos/act
     // Language Support
+    "VisualStudioExptTeam.vscodeintellicode",
     "vscjava.vscode-java-pack",
-    "vscjava.vscode-maven"
+    "vscjava.vscode-maven",
+    "redhat.vscode-xml",
+    // docker
+    "ms-azuretools.vscode-docker",
+    "ms-vscode-remote.remote-containers"
   ]
 }
