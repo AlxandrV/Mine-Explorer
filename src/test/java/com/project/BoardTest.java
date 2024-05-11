@@ -16,7 +16,20 @@ class BoardTest {
     String result = board.toString();
 
     // then
-    String expected = "***\n***";
+    String expected = " **  **  ** \n **  ♛♛  ** ";
     Assertions.assertEquals(expected, result);
+  }
+
+  @Test
+  void playerPositionTest() {
+    // Given
+    board = new Board(5, 3);
+
+    // When
+    int[] position = board.playerPosition();
+    int[] positionExpected = {2, 1};
+
+    // Then
+    Assertions.assertArrayEquals(positionExpected, position);
   }
 }

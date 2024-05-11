@@ -23,21 +23,46 @@ public class Game {
 
     do {
       System.out.println(board);
-      if (menu() == 0) {
+      int action = menu();
+      if (action == 0) {
         gameRunning = false;
+      } else if (action == 1) {
+        moveToDirection();
       }
     } while (gameRunning);
   }
 
   private int menu() {
-    String menu = "----------\n" +
-        "Actions disponibles :\n" +
-        "Quitter[0]\n" +
-        "----------\n";
+    String menu = "----------\n" + "Actions disponibles :\n" + "Quitter[0]\n"
+        + "Se déplacer[1] (consomme une grenade)\n" + "----------\n";
 
     System.out.println(menu);
     int action = scanner.nextInt();
 
     return action;
+  }
+
+  private void moveToDirection() {
+    System.out.println("Se déplacer vers :\n" + "Haut : z | Bas : s | Gauche : q | Droite : d");
+    String direction = scanner.next();
+
+    int[] position = board.playerPosition();
+    Room[][] matrice = board.getMatrice();
+    Player player = board.getPlayer();
+
+    switch (direction) {
+      case "z":
+        player.setRoom(matrice[position[0] - 1][position[1]]);
+        break;
+      case "s":
+        player.setRoom(matrice[position[0] + 1][position[1]]);
+        break;
+      case "q":
+        player.setRoom(matrice[position[0]][position[1] - 1]);
+        break;
+      case "d":
+        player.setRoom(matrice[position[0]][position[1] + 1]);
+        break;
+    }
   }
 }
