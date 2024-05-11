@@ -16,6 +16,7 @@
     "VisualStudioExptTeam.vscodeintellicode",
     "vscjava.vscode-java-pack",
     "vscjava.vscode-maven",
+    "redhat.vscode-xml",
     // docker
     "ms-azuretools.vscode-docker",
     "ms-vscode-remote.remote-containers"
