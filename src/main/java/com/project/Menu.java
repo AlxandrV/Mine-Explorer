@@ -24,7 +24,7 @@ public class Menu {
     String menu = "----------\n" +
         "Actions disponibles :\n" +
         "Quitter[0]\n" +
-        "----------\n";
+        "----------";
 
     System.out.println(menu);
     int action = scanner.nextInt();

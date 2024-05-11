@@ -9,7 +9,7 @@ public class Game {
 
   public Game(Menu menu) {
     this.menu = menu;
-    board = new Board(menu.getNbRow(), menu.getNbColumn());
+    board = new Board(menu.getNbRow(), menu.getNbColumn(), new Player());
 
     gameRunning = true;
   }

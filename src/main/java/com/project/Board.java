@@ -2,32 +2,26 @@ package com.project;
 
 public class Board {
 
-  private String[][] matrice;
+  private Room[][] matrice;
   private int nbRow;
   private int nbColumn;
 
-  public Board(int nbRow, int nbColumn) {
+  public Board(int nbRow, int nbColumn, Player player) {
     this.nbRow = nbRow;
     this.nbColumn = nbColumn;
 
-    initMatrice();
+    initMatrice(player);
   }
 
-  private void initMatrice() {
-    matrice = new String[nbRow][nbColumn];
+  private void initMatrice(Player player) {
+    matrice = new Room[nbRow][nbColumn];
     for (int i = 0; i < nbRow; i++) {
       for (int j = 0; j < nbColumn; j++) {
-        matrice[i][j] = "*";
+        matrice[i][j] = new Room();
       }
     }
-  }
 
-  public String[][] getMatrice() {
-    return matrice;
-  }
-
-  public void setMatrice(String[][] matrice) {
-    this.matrice = matrice;
+    matrice[nbRow / 2][nbColumn / 2].playerEnterRoom(player);
   }
 
   @Override
