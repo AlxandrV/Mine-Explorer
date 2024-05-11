@@ -4,13 +4,12 @@ public class Game {
 
   private Menu menu;
   private Board board;
-  private Player player;
 
   private boolean gameRunning;
 
   public Game(Menu menu) {
     this.menu = menu;
-    board = new Board(menu.getNbRow(), menu.getNbColumn(), player);
+    board = new Board(menu.getNbRow(), menu.getNbColumn(), new Player());
 
     gameRunning = true;
   }
