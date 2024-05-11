@@ -8,7 +8,7 @@ class BoardTest {
   private Board board;
 
   @Test
-  void toStringTestShouldDisplayBoard() {
+  void toStringShouldDisplayBoard() {
     // given
     board = new Board(2, 3);
 
@@ -16,7 +16,7 @@ class BoardTest {
     String result = board.toString();
 
     // then
-    String expected = "***\n***";
+    String expected = "      \n      ";
     Assertions.assertEquals(expected, result);
   }
 }

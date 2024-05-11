@@ -2,7 +2,7 @@ package com.project;
 
 public class Board {
 
-  private String[][] matrice;
+  private Room[][] matrice;
   private int nbRow;
   private int nbColumn;
 
@@ -14,20 +14,12 @@ public class Board {
   }
 
   private void initMatrice() {
-    matrice = new String[nbRow][nbColumn];
+    matrice = new Room[nbRow][nbColumn];
     for (int i = 0; i < nbRow; i++) {
       for (int j = 0; j < nbColumn; j++) {
-        matrice[i][j] = "*";
+        matrice[i][j] = new Room();
       }
     }
-  }
-
-  public String[][] getMatrice() {
-    return matrice;
-  }
-
-  public void setMatrice(String[][] matrice) {
-    this.matrice = matrice;
   }
 
   @Override
