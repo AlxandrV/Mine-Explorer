@@ -14,13 +14,17 @@ class GameTest {
   @Mock
   Menu menu;
 
+  @Mock
+  Player player;
+
   @Test
   void loopShouldStopWhenAction0() {
     // given
     Mockito.when(menu.getNbColumn()).thenReturn(3);
     Mockito.when(menu.getNbRow()).thenReturn(3);
-    Mockito.when(menu.doAction()).thenReturn(1).thenReturn(0);
-    game = new Game(menu);
+    Mockito.when(menu.chooseDirectionToMovePlayer()).thenReturn("z");
+    Mockito.when(menu.doAction()).thenReturn(1).thenReturn(-1).thenReturn(0);
+    game = new Game(menu, player);
 
     // when
     game.loop();

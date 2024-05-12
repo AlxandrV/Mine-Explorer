@@ -6,33 +6,39 @@ public class Board {
   private int nbRow;
   private int nbColumn;
 
+  private Player player;
+
   public Board(int nbRow, int nbColumn, Player player) {
     this.nbRow = nbRow;
     this.nbColumn = nbColumn;
-
-    initMatrice(player);
+    this.player = player;
   }
 
-  private void initMatrice(Player player) {
+  public void initMatrice() {
     matrice = new Room[nbRow][nbColumn];
-    for (int i = 0; i < nbRow; i++) {
-      for (int j = 0; j < nbColumn; j++) {
-        matrice[i][j] = new Room();
+    for (int y = 0; y < nbRow; y++) {
+      for (int x = 0; x < nbColumn; x++) {
+        matrice[y][x] = new Room();
       }
     }
 
-    matrice[nbRow / 2][nbColumn / 2].playerEnterRoom(player);
+    if (player != null)
+      player.setCoordinate(new Coordinate(nbColumn / 2, nbRow / 2));
+  }
+
+  public Room[][] getMatrice() {
+    return matrice;
   }
 
   @Override
   public String toString() {
     String display = "";
 
-    for (int i = 0; i < nbRow; i++) {
-      for (int j = 0; j < nbColumn; j++) {
-        display += matrice[i][j];
+    for (int y = 0; y < nbRow; y++) {
+      for (int x = 0; x < nbColumn; x++) {
+        display += matrice[y][x];
       }
-      if (i < nbRow - 1) {
+      if (y < nbRow - 1) {
         display += "\n";
       }
     }

@@ -23,11 +23,23 @@ public class Menu {
   public int doAction() {
     String menu = "----------\n" +
         "Actions disponibles :\n" +
-        "Quitter[0]\n" +
+        "Quitter[0] Se déplacer[1]\n" +
         "----------";
 
     System.out.println(menu);
     int action = scanner.nextInt();
+
+    return action;
+  }
+
+  public String chooseDirectionToMovePlayer() {
+    String menu = "----------\n" +
+        "Actions disponibles :\n" +
+        "Z Q S D\n" +
+        "----------";
+
+    System.out.println(menu);
+    String action = scanner.next();
 
     return action;
   }
