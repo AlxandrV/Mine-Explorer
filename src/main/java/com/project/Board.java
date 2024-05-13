@@ -40,10 +40,14 @@ public class Board {
         id++;
         matrice[i][j] = new Room(id);
         if (i == middleRow && j == middleCol) {
-          player = new Player(matrice[i][j]);
+          initPlayer(matrice[i][j]);
         }
       }
     }
+  }
+
+  private void initPlayer(Room room) {
+    player = new Player(room);
   }
 
   public int[] playerPosition() {
@@ -87,7 +91,7 @@ public class Board {
 
     for (int i = 0; i < nbRow; i++) {
       for (int j = 0; j < nbColumn; j++) {
-        display += player.getRoom() == matrice[i][j] ? " ♛♛ " : " " + matrice[i][j].display() + " ";
+        display += " " + matrice[i][j].display() + " ";
       }
       if (i < nbRow - 1) {
         display += "\n";
