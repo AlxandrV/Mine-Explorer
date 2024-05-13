@@ -23,6 +23,7 @@ public class Game {
         gameRunning = false;
       } else if (action == 1) {
         String direction = menu.moveToDirection();
+        board.movePlayer(direction);
       }
     } while (gameRunning);
   }

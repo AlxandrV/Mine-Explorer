@@ -85,6 +85,13 @@ public class Board {
     return -1;
   }
 
+  public void movePlayer(String direction) {
+    int[] position = playerPosition();
+    Player player = getPlayer();
+    Room[][] matrice = getMatrice();
+    player.move(direction, position, matrice);
+  }
+
   @Override
   public String toString() {
     String display = "";

@@ -19,6 +19,7 @@ class GameTest {
     // given
     Mockito.when(menu.getNbColumn()).thenReturn(3);
     Mockito.when(menu.getNbRow()).thenReturn(3);
+    Mockito.when(menu.moveToDirection()).thenReturn("z");
     Mockito.when(menu.doAction()).thenReturn(1).thenReturn(0);
     game = new Game(menu);
 

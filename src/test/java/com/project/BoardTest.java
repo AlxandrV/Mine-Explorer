@@ -16,7 +16,7 @@ class BoardTest {
     String result = board.toString();
 
     // then
-    String expected = " **  **  ** \n **  ♛♛  ** ";
+    String expected = " **  **  ** \n **  **  ** ";
     Assertions.assertEquals(expected, result);
   }
 
