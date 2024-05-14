@@ -21,6 +21,9 @@ public class Game {
       int action = menu.doAction();
       if (action == 0) {
         gameRunning = false;
+      } else if (action == 1) {
+        String direction = menu.moveToDirection();
+        board.movePlayer(direction);
       }
     } while (gameRunning);
   }
@@ -28,4 +31,5 @@ public class Game {
   public boolean isGameRunning() {
     return gameRunning;
   }
+
 }
