@@ -12,14 +12,14 @@ public class PlayerTest {
 
   @ParameterizedTest
   @MethodSource
-  void moveTest(String diretion, int rowPosition, int columnPosition) {
+  void moveTest(String direction, int rowPosition, int columnPosition) {
     // given
     Board board = new Board(3, 5);
     Room[][] matrice = board.getMatrice();
     player = board.getPlayer();
     int[] postion = board.playerPosition();
     // when
-    player.move(diretion, postion, matrice);
+    player.move(direction, postion, matrice);
     // then
     Assertions.assertEquals(matrice[rowPosition][columnPosition], player.getRoom());
   }
