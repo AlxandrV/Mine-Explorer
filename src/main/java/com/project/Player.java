@@ -32,4 +32,8 @@ public class Player {
                 break;
         }
     };
+
+    public String display() {
+        return "??";
+    }
 }
