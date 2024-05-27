@@ -143,7 +143,7 @@ public class Board {
       Room room = matrice[i][j];
 
       if (room != null && !getMine().contains(room)) {
-        getMine().add(room);
+        getMineRoom.add(room);
         count++;
       }
     }
@@ -162,6 +162,8 @@ public class Board {
       for (int j = 0; j < nbColumn; j++) {
         if (i == playerPosition[0] && j == playerPosition[1]) {
           display += " " + player.display() + " ";
+        } else if (getMineRoom.contains(matrice[i][j])) {
+          display += " /\\ ";
         } else {
           display += " " + matrice[i][j].display() + " ";
         }
