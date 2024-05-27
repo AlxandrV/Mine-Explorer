@@ -72,4 +72,16 @@ class BoardTest {
     // Then
     Assertions.assertTrue(Arrays.asList(exitRoom).contains(true));
   }
+
+  @Test
+  void containsMineTest() {
+    // Given
+    board = new Board(3, 5);
+
+    // When
+    board.initMine(3);
+
+    // Then
+    Assertions.assertEquals(3, board.getMine().size());
+  }
 }
