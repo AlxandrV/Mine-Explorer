@@ -1,15 +1,21 @@
 package com.project;
 
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
+
 public class Board {
 
   private Room[][] matrice;
   private int nbRow;
   private int nbColumn;
   private Player player;
+  private Set<Room> getMineRoom;
 
   public Board(int nbRow, int nbColumn) {
     this.nbRow = nbRow;
     this.nbColumn = nbColumn;
+    getMineRoom = new HashSet<>();
 
     initMatrice();
   }
@@ -122,6 +128,29 @@ public class Board {
     }
 
     matrice[i][j].setExit(true);
+  }
+
+  public void initMine(int nbMine) {
+    int count = 0;
+    Random random = new Random();
+
+    while (count < nbMine) {
+      int i = random.nextInt(nbRow);
+      int j = random.nextInt(nbColumn);
+
+      Room[][] matrice = getMatrice();
+
+      Room room = matrice[i][j];
+
+      if (room != null && !getMine().contains(room)) {
+        getMine().add(room);
+        count++;
+      }
+    }
+  }
+
+  public Set<Room> getMine() {
+    return getMineRoom;
   }
 
   @Override

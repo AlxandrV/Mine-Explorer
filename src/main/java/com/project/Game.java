@@ -10,6 +10,7 @@ public class Game {
   public Game(Menu menu) {
     this.menu = menu;
     board = new Board(menu.getNbRow(), menu.getNbColumn());
+    board.initMine(menu.getNbMine());
 
     gameRunning = true;
   }
