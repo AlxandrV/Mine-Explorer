@@ -25,7 +25,8 @@ public class Game {
       } else if (action == 1) {
         String direction = menu.moveToDirection();
         board.movePlayer(direction);
-        if (board.getPlayer().getRoom().getExit()) {
+        if (board.getPlayer().getRoom().getExit()
+            || board.getMine().contains(board.getPlayer().getRoom())) {
           gameRunning = false;
         }
       }
