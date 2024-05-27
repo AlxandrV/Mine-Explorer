@@ -1,5 +1,6 @@
 package com.project;
 
+import java.util.Arrays;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -20,8 +21,9 @@ class BoardTest {
     String result = board.toString();
 
     // then
-    String expected = " **  **  ** \n **  **  ** ";
-    Assertions.assertEquals(expected, result);
+    String[] expected = {" ()  **  ** \n **  ??  ** ", " **  **  () \n **  ??  ** ",
+        " **  **  ** \n ()  ??  ** ", " **  **  ** \n **  ??  () "};
+    Assertions.assertTrue(Arrays.asList(expected).contains(result));
   }
 
   @Test
@@ -55,5 +57,19 @@ class BoardTest {
   private static Stream<Arguments> movePlayerTest() {
     return Stream.of(Arguments.of("z", 0, 2), Arguments.of("s", 2, 2), Arguments.of("q", 1, 1),
         Arguments.of("d", 1, 3));
+  }
+
+  @Test
+  void exitPositionTest() {
+    // Given
+    board = new Board(3, 5);
+
+    // When
+    Room[][] matrice = board.getMatrice();
+    Boolean[] exitRoom = {matrice[0][0].getExit(), matrice[0][4].getExit(), matrice[2][0].getExit(),
+        matrice[2][4].getExit()};
+
+    // Then
+    Assertions.assertTrue(Arrays.asList(exitRoom).contains(true));
   }
 }

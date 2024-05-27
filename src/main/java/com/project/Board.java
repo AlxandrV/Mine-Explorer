@@ -39,11 +39,13 @@ public class Board {
       for (int j = 0; j < nbColumn; j++) {
         id++;
         matrice[i][j] = new Room(id);
+        matrice[i][j].setExit(false);
         if (i == middleRow && j == middleCol) {
           initPlayer(matrice[i][j]);
         }
       }
     }
+    addExitRandom(matrice);
   }
 
   private void initPlayer(Room room) {
@@ -92,13 +94,48 @@ public class Board {
     player.move(direction, position, matrice);
   }
 
+  private void addExitRandom(Room[][] matrice) {
+    int nbRow = matrice.length;
+    int nbColumn = matrice[0].length;
+
+    int roomRandom = (int) (Math.random() * 4);
+    int i, j;
+    switch (roomRandom) {
+      case 0:
+        i = 0;
+        j = 0;
+        break;
+      case 1:
+        i = 0;
+        j = nbColumn - 1;
+        break;
+      case 2:
+        i = nbRow - 1;
+        j = 0;
+        break;
+      case 3:
+        i = nbRow - 1;
+        j = nbColumn - 1;
+        break;
+      default:
+        throw new IllegalArgumentException("Valeur de coinAleatoire invalide.");
+    }
+
+    matrice[i][j].setExit(true);
+  }
+
   @Override
   public String toString() {
     String display = "";
+    int[] playerPosition = playerPosition();
 
     for (int i = 0; i < nbRow; i++) {
       for (int j = 0; j < nbColumn; j++) {
-        display += " " + matrice[i][j].display() + " ";
+        if (i == playerPosition[0] && j == playerPosition[1]) {
+          display += " " + player.display() + " ";
+        } else {
+          display += " " + matrice[i][j].display() + " ";
+        }
       }
       if (i < nbRow - 1) {
         display += "\n";
