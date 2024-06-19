@@ -1,9 +1,8 @@
 package com.project;
 
-import java.util.HashSet;
 import java.util.Random;
-import java.util.Set;
 import com.project.Items.Exit;
+import com.project.Items.Mine;
 
 public class Board {
 
@@ -11,12 +10,10 @@ public class Board {
   private int nbRow;
   private int nbColumn;
   private Player player;
-  private Set<Room> getMineRoom;
 
   public Board(int nbRow, int nbColumn) {
     this.nbRow = nbRow;
     this.nbColumn = nbColumn;
-    getMineRoom = new HashSet<>();
 
     initMatrice();
   }
@@ -142,15 +139,11 @@ public class Board {
 
       Room room = matrice[i][j];
 
-      if (room != null && !getMine().contains(room)) {
-        getMineRoom.add(room);
+      if (room.getItem() == null) {
+        room.setItem(new Mine());
         count++;
       }
     }
-  }
-
-  public Set<Room> getMine() {
-    return getMineRoom;
   }
 
   @Override
@@ -162,8 +155,6 @@ public class Board {
       for (int j = 0; j < nbColumn; j++) {
         if (i == playerPosition[0] && j == playerPosition[1]) {
           display += " " + player.display() + " ";
-        } else if (getMineRoom.contains(matrice[i][j])) {
-          display += " /\\ ";
         } else {
           display += " " + matrice[i][j].display() + " ";
         }

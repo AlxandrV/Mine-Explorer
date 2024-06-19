@@ -1,6 +1,7 @@
 package com.project;
 
 import com.project.Items.Exit;
+import com.project.Items.Mine;
 
 public class Game {
 
@@ -28,7 +29,7 @@ public class Game {
         String direction = menu.moveToDirection();
         board.movePlayer(direction);
         if (board.getPlayer().getRoom().getItem() instanceof Exit
-            || board.getMine().contains(board.getPlayer().getRoom())) {
+            || board.getPlayer().getRoom().getItem() instanceof Mine) {
           gameRunning = false;
         }
       }

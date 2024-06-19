@@ -8,6 +8,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import com.project.Items.Exit;
+import com.project.Items.Mine;
 
 class BoardTest {
 
@@ -84,6 +85,18 @@ class BoardTest {
     board.initMine(3);
 
     // Then
-    Assertions.assertEquals(3, board.getMine().size());
+    Room[][] matrice = board.getMatrice();
+    int nbRow = matrice.length;
+    int nbColumn = matrice[0].length;
+
+    int containsMine = 0;
+    for (int i = 0; i < nbRow; i++) {
+      for (int j = 0; j < nbColumn; j++) {
+        if (matrice[i][j].getItem() instanceof Mine) {
+          containsMine++;
+        }
+      }
+    }
+    Assertions.assertEquals(3, containsMine);
   }
 }
