@@ -3,7 +3,15 @@ package com.project;
 public class Room {
 
     int id;
-    Boolean exit;
+    Item item;
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
 
     public Room(int id) {
         this.id = id;
@@ -13,15 +21,7 @@ public class Room {
         return this.id;
     }
 
-    public void setExit(Boolean exit) {
-        this.exit = exit;
-    }
-
-    public Boolean getExit() {
-        return this.exit;
-    }
-
     public String display() {
-        return exit == true ? "()" : "**";
+        return this.item != null ? this.item.display() : "**";
     }
 }
