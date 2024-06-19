@@ -1,5 +1,7 @@
 package com.project;
 
+import com.project.Items.Exit;
+
 public class Game {
 
   private Menu menu;
@@ -25,7 +27,7 @@ public class Game {
       } else if (action == 1) {
         String direction = menu.moveToDirection();
         board.movePlayer(direction);
-        if (board.getPlayer().getRoom().getExit()
+        if (board.getPlayer().getRoom().getItem() instanceof Exit
             || board.getMine().contains(board.getPlayer().getRoom())) {
           gameRunning = false;
         }

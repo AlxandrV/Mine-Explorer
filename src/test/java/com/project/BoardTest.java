@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import com.project.Items.Exit;
 
 class BoardTest {
 
@@ -66,11 +67,12 @@ class BoardTest {
 
     // When
     Room[][] matrice = board.getMatrice();
-    Boolean[] exitRoom = {matrice[0][0].getExit(), matrice[0][4].getExit(), matrice[2][0].getExit(),
-        matrice[2][4].getExit()};
+    Item[] exitRoom = {matrice[0][0].getItem(), matrice[0][4].getItem(), matrice[2][0].getItem(),
+        matrice[2][4].getItem()};
 
+    Boolean containsExit = Arrays.stream(exitRoom).anyMatch(item -> item instanceof Exit);
     // Then
-    Assertions.assertTrue(Arrays.asList(exitRoom).contains(true));
+    Assertions.assertTrue(containsExit);
   }
 
   @Test

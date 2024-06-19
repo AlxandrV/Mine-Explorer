@@ -3,6 +3,7 @@ package com.project;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
+import com.project.Items.Exit;
 
 public class Board {
 
@@ -45,7 +46,6 @@ public class Board {
       for (int j = 0; j < nbColumn; j++) {
         id++;
         matrice[i][j] = new Room(id);
-        matrice[i][j].setExit(false);
         if (i == middleRow && j == middleCol) {
           initPlayer(matrice[i][j]);
         }
@@ -127,7 +127,7 @@ public class Board {
         throw new IllegalArgumentException("Valeur de coinAleatoire invalide.");
     }
 
-    matrice[i][j].setExit(true);
+    matrice[i][j].setItem(new Exit());
   }
 
   public void initMine(int nbMine) {
