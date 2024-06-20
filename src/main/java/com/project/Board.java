@@ -1,5 +1,9 @@
 package com.project;
 
+import java.util.Random;
+import com.project.Items.Exit;
+import com.project.Items.Mine;
+
 public class Board {
 
   private Room[][] matrice;
@@ -39,7 +43,6 @@ public class Board {
       for (int j = 0; j < nbColumn; j++) {
         id++;
         matrice[i][j] = new Room(id);
-        matrice[i][j].setExit(false);
         if (i == middleRow && j == middleCol) {
           initPlayer(matrice[i][j]);
         }
@@ -121,7 +124,26 @@ public class Board {
         throw new IllegalArgumentException("Valeur de coinAleatoire invalide.");
     }
 
-    matrice[i][j].setExit(true);
+    matrice[i][j].setItem(new Exit());
+  }
+
+  public void initMine(int nbMine) {
+    int count = 0;
+    Random random = new Random();
+
+    while (count < nbMine) {
+      int i = random.nextInt(nbRow);
+      int j = random.nextInt(nbColumn);
+
+      Room[][] matrice = getMatrice();
+
+      Room room = matrice[i][j];
+
+      if (room.getItem() == null) {
+        room.setItem(new Mine());
+        count++;
+      }
+    }
   }
 
   @Override

@@ -20,6 +20,11 @@ public class Menu {
     return scanner.nextInt();
   }
 
+  public int getNbMine() {
+    System.out.print("Nombre de mine : ");
+    return scanner.nextInt();
+  }
+
   public int doAction() {
     String menu = "----------\n" + "Actions disponibles :\n" + "Quitter[0]\n" + "Se déplacer[1]\n"
         + "----------\n";
