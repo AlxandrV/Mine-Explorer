@@ -1,5 +1,6 @@
 package com.project;
 
+import java.util.Optional;
 import java.util.Random;
 import com.project.Items.Exit;
 import com.project.Items.Mine;
@@ -9,6 +10,15 @@ public class Board {
   private Room[][] matrice;
   private int nbRow;
   private int nbColumn;
+
+  public int getNbRow() {
+    return nbRow;
+  }
+
+  public int getNbColumn() {
+    return nbColumn;
+  }
+
   private Player player;
 
   public Board(int nbRow, int nbColumn) {
@@ -144,6 +154,10 @@ public class Board {
         count++;
       }
     }
+  }
+
+  public Optional<Room> getRoomByCoordinate(int x, int y) {
+    return Optional.ofNullable(matrice[x][y]);
   }
 
   @Override

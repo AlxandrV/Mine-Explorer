@@ -1,6 +1,7 @@
 package com.project;
 
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -68,11 +69,14 @@ class BoardTest {
 
     // When
     Room[][] matrice = board.getMatrice();
-    Item[] exitRoom = {matrice[0][0].getItem(), matrice[0][4].getItem(), matrice[2][0].getItem(),
-        matrice[2][4].getItem()};
+    Item[] exitRoom = {matrice[0][0].getItem(), matrice[0][board.getNbColumn() - 1].getItem(),
+        matrice[board.getNbRow() - 1][0].getItem(),
+        matrice[board.getNbRow() - 1][board.getNbColumn() - 1].getItem()};
 
     Boolean containsExit = Arrays.stream(exitRoom).anyMatch(item -> item instanceof Exit);
+    int nbExit = countObjects(Exit.class);
     // Then
+    Assertions.assertEquals(1, nbExit);
     Assertions.assertTrue(containsExit);
   }
 
@@ -85,18 +89,19 @@ class BoardTest {
     board.initMine(3);
 
     // Then
-    Room[][] matrice = board.getMatrice();
-    int nbRow = matrice.length;
-    int nbColumn = matrice[0].length;
+    Assertions.assertEquals(3, countObjects(Mine.class));
+  }
 
-    int containsMine = 0;
-    for (int i = 0; i < nbRow; i++) {
-      for (int j = 0; j < nbColumn; j++) {
-        if (matrice[i][j].getItem() instanceof Mine) {
-          containsMine++;
+  private int countObjects(Class<?> clazz) {
+    int count = 0;
+    for (int x = 0; x < board.getNbRow(); x++) {
+      for (int y = 0; y < board.getNbColumn(); y++) {
+        Optional<Room> roomOptional = board.getRoomByCoordinate(x, y);
+        if (roomOptional.isPresent() && clazz.isInstance(roomOptional.get().getItem())) {
+          count++;
         }
       }
     }
-    Assertions.assertEquals(3, containsMine);
+    return count;
   }
 }
