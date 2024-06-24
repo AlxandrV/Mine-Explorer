@@ -92,6 +92,18 @@ class BoardTest {
     Assertions.assertEquals(3, countObjects(Mine.class));
   }
 
+  @Test
+  void initDetectorTest() {
+    // Given
+    board = new Board(3, 5);
+
+    // When
+    int nbExit = countObjects(Detector.class);
+
+    // Then
+    Assertions.assertEquals(1, nbExit);
+  }
+
   private int countObjects(Class<?> clazz) {
     int count = 0;
     for (int x = 0; x < board.getNbRow(); x++) {
