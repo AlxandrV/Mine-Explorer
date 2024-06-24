@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import com.project.Items.Detector;
 import com.project.Items.Exit;
 import com.project.Items.Mine;
 
@@ -98,10 +99,10 @@ class BoardTest {
     board = new Board(3, 5);
 
     // When
-    int nbExit = countObjects(Detector.class);
+    int nbDetector = countObjects(Detector.class);
 
     // Then
-    Assertions.assertEquals(1, nbExit);
+    Assertions.assertEquals(1, nbDetector);
   }
 
   private int countObjects(Class<?> clazz) {
