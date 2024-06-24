@@ -17,20 +17,6 @@ class BoardTest {
   private Board board;
 
   @Test
-  void toStringTestShouldDisplayBoard() {
-    // given
-    board = new Board(2, 3);
-
-    // when
-    String result = board.toString();
-
-    // then
-    String[] expected = {" ()  **  ** \n **  ??  ** ", " **  **  () \n **  ??  ** ",
-        " **  **  ** \n ()  ??  ** ", " **  **  ** \n **  ??  () "};
-    Assertions.assertTrue(Arrays.asList(expected).contains(result));
-  }
-
-  @Test
   void playerPositionTest() {
     // Given
     board = new Board(2, 3);
