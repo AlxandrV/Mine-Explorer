@@ -67,10 +67,6 @@ public class Board {
     player = new Player(room);
   }
 
-  private void initDetector(Room room) {
-
-  }
-
   public int[] playerPosition() {
     Room[][] matrice = getMatrice();
     int row = searchRow(matrice, player.getRoom().getId());
