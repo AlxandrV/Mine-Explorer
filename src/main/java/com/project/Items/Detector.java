@@ -6,6 +6,6 @@ public class Detector extends Item {
 
   @Override
   public String display() {
-    return "↺*";
+    return "^*";
   }
 }
