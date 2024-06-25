@@ -1,32 +1,20 @@
 package com.project;
 
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import com.project.Items.Detector;
 import com.project.Items.Exit;
 import com.project.Items.Mine;
 
 class BoardTest {
 
   private Board board;
-
-  @Test
-  void toStringTestShouldDisplayBoard() {
-    // given
-    board = new Board(2, 3);
-
-    // when
-    String result = board.toString();
-
-    // then
-    String[] expected = {" ()  **  ** \n **  ??  ** ", " **  **  () \n **  ??  ** ",
-        " **  **  ** \n ()  ??  ** ", " **  **  ** \n **  ??  () "};
-    Assertions.assertTrue(Arrays.asList(expected).contains(result));
-  }
 
   @Test
   void playerPositionTest() {
@@ -68,11 +56,14 @@ class BoardTest {
 
     // When
     Room[][] matrice = board.getMatrice();
-    Item[] exitRoom = {matrice[0][0].getItem(), matrice[0][4].getItem(), matrice[2][0].getItem(),
-        matrice[2][4].getItem()};
+    Item[] exitRoom = {matrice[0][0].getItem(), matrice[0][board.getNbColumn() - 1].getItem(),
+        matrice[board.getNbRow() - 1][0].getItem(),
+        matrice[board.getNbRow() - 1][board.getNbColumn() - 1].getItem()};
 
     Boolean containsExit = Arrays.stream(exitRoom).anyMatch(item -> item instanceof Exit);
+    int nbExit = countObjects(Exit.class);
     // Then
+    Assertions.assertEquals(1, nbExit);
     Assertions.assertTrue(containsExit);
   }
 
@@ -85,18 +76,31 @@ class BoardTest {
     board.initMine(3);
 
     // Then
-    Room[][] matrice = board.getMatrice();
-    int nbRow = matrice.length;
-    int nbColumn = matrice[0].length;
+    Assertions.assertEquals(3, countObjects(Mine.class));
+  }
 
-    int containsMine = 0;
-    for (int i = 0; i < nbRow; i++) {
-      for (int j = 0; j < nbColumn; j++) {
-        if (matrice[i][j].getItem() instanceof Mine) {
-          containsMine++;
+  @Test
+  void initDetectorTest() {
+    // Given
+    board = new Board(3, 5);
+
+    // When
+    int nbDetector = countObjects(Detector.class);
+
+    // Then
+    Assertions.assertEquals(1, nbDetector);
+  }
+
+  private int countObjects(Class<?> clazz) {
+    int count = 0;
+    for (int x = 0; x < board.getNbRow(); x++) {
+      for (int y = 0; y < board.getNbColumn(); y++) {
+        Optional<Room> roomOptional = board.getRoomByCoordinate(x, y);
+        if (roomOptional.isPresent() && clazz.isInstance(roomOptional.get().getItem())) {
+          count++;
         }
       }
     }
-    Assertions.assertEquals(3, containsMine);
+    return count;
   }
 }

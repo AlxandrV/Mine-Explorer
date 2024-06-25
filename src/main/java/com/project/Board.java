@@ -1,6 +1,8 @@
 package com.project;
 
+import java.util.Optional;
 import java.util.Random;
+import com.project.Items.Detector;
 import com.project.Items.Exit;
 import com.project.Items.Mine;
 
@@ -9,6 +11,15 @@ public class Board {
   private Room[][] matrice;
   private int nbRow;
   private int nbColumn;
+
+  public int getNbRow() {
+    return nbRow;
+  }
+
+  public int getNbColumn() {
+    return nbColumn;
+  }
+
   private Player player;
 
   public Board(int nbRow, int nbColumn) {
@@ -49,6 +60,7 @@ public class Board {
       }
     }
     addExitRandom(matrice);
+    addDetectorRandom();
   }
 
   private void initPlayer(Room room) {
@@ -98,9 +110,6 @@ public class Board {
   }
 
   private void addExitRandom(Room[][] matrice) {
-    int nbRow = matrice.length;
-    int nbColumn = matrice[0].length;
-
     int roomRandom = (int) (Math.random() * 4);
     int i, j;
     switch (roomRandom) {
@@ -135,15 +144,34 @@ public class Board {
       int i = random.nextInt(nbRow);
       int j = random.nextInt(nbColumn);
 
-      Room[][] matrice = getMatrice();
+      Optional<Room> room = getRoomByCoordinate(i, j);
 
-      Room room = matrice[i][j];
-
-      if (room.getItem() == null) {
-        room.setItem(new Mine());
+      if (room.get().getItem() == null) {
+        room.get().setItem(new Mine());
         count++;
       }
     }
+  }
+
+  public void addDetectorRandom() {
+    Random random = new Random();
+    Boolean dontHasDetector = true;
+
+    while (dontHasDetector) {
+      int i = random.nextInt(nbRow);
+      int j = random.nextInt(nbColumn);
+
+      Optional<Room> room = getRoomByCoordinate(i, j);
+
+      if (room.get().getItem() == null) {
+        room.get().setItem(new Detector());
+        dontHasDetector = false;
+      }
+    }
+  }
+
+  public Optional<Room> getRoomByCoordinate(int x, int y) {
+    return Optional.ofNullable(matrice[x][y]);
   }
 
   @Override
