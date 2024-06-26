@@ -15,15 +15,15 @@ public class PlayerTest {
   void moveTest(String direction, int rowPosition, int columnPosition) {
     // given
     Board board = new Board(3, 5);
-    Room[][] matrice = board.getMatrice();
     player = board.getPlayer();
-    int[] postion = board.playerPosition();
-    // when
-    player.move(direction, postion, matrice);
-    // then
-    Assertions.assertEquals(matrice[rowPosition][columnPosition], player.getRoom());
-  }
 
+    // when
+    board.getPlayer().move(direction, board.playerPosition(), board.getMatrice());
+
+    // then
+    Assertions.assertEquals(board.getMatrice()[rowPosition][columnPosition],
+        board.getPlayer().getRoom());
+  }
 
   private static Stream<Arguments> moveTest() {
     return Stream.of(Arguments.of("z", 0, 2), Arguments.of("s", 2, 2), Arguments.of("q", 1, 1),
