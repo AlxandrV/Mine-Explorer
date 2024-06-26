@@ -38,6 +38,26 @@ public class Menu {
   public String moveToDirection() {
     System.out.println("Se déplacer vers :\n" + "Haut : z | Bas : s | Gauche : q | Droite : d");
 
-    return scanner.next();
+    return scanner.next().toLowerCase();
+  }
+
+  public void actionNotif(PlayerState state) {
+    switch (state) {
+      case PLAYING:
+        System.out.println("Début de la partie");
+        break;
+      case WON:
+        System.out.println("Vous avez gagné");
+        break;
+      case LOST:
+        System.out.println("Vous avez perdu");
+        break;
+      case EXIT:
+        System.out.println("Merci d'avoir joué :)");
+        break;
+
+      default:
+        break;
+    }
   }
 }

@@ -68,8 +68,7 @@ public class Board {
   }
 
   public int[] playerPosition() {
-    Room[][] matrice = getMatrice();
-    int row = searchRow(matrice, player.getRoom().getId());
+    int row = searchRow(getMatrice(), player.getRoom().getId());
 
     if (row != -1) {
       for (int j = 0; j < nbColumn; j++) {
@@ -100,13 +99,6 @@ public class Board {
       }
     }
     return -1;
-  }
-
-  public void movePlayer(String direction) {
-    int[] position = playerPosition();
-    Player player = getPlayer();
-    Room[][] matrice = getMatrice();
-    player.move(direction, position, matrice);
   }
 
   private void addExitRandom(Room[][] matrice) {

@@ -1,11 +1,24 @@
 package com.project;
 
+import com.project.Items.Exit;
+import com.project.Items.Mine;
+
 public class Player {
 
     private Room room;
+    private PlayerState playerState;
 
     public Player(Room room) {
+        playerState = PlayerState.PLAYING;
         setRoom(room);
+    }
+
+    public PlayerState getPlayerState() {
+        return playerState;
+    }
+
+    public void setPlayerState(PlayerState playerState) {
+        this.playerState = playerState;
     }
 
     public Room getRoom() {
@@ -17,19 +30,37 @@ public class Player {
     }
 
     public void move(String direction, int[] position, Room[][] matrice) {
+        int[] matriceDirection = new int[2];
+
         switch (direction) {
             case "z":
-                setRoom(matrice[position[0] - 1][position[1]]);
+                matriceDirection[0] = -1;
+                matriceDirection[1] = 0;
                 break;
             case "s":
-                setRoom(matrice[position[0] + 1][position[1]]);
+                matriceDirection[0] = 1;
+                matriceDirection[1] = 0;
                 break;
             case "q":
-                setRoom(matrice[position[0]][position[1] - 1]);
+                matriceDirection[0] = 0;
+                matriceDirection[1] = -1;
                 break;
             case "d":
-                setRoom(matrice[position[0]][position[1] + 1]);
+                matriceDirection[0] = 0;
+                matriceDirection[1] = 1;
                 break;
+            default:
+                matriceDirection[0] = 0;
+                matriceDirection[1] = 0;
+                break;
+        }
+
+        setRoom(matrice[position[0] + matriceDirection[0]][position[1] + matriceDirection[1]]);
+
+        if (getRoom().getItem() instanceof Exit) {
+            setPlayerState(PlayerState.EXIT);
+        } else if (getRoom().getItem() instanceof Mine) {
+            setPlayerState(PlayerState.LOST);
         }
     };
 

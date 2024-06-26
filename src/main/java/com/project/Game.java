@@ -1,8 +1,5 @@
 package com.project;
 
-import com.project.Items.Exit;
-import com.project.Items.Mine;
-
 public class Game {
 
   private Menu menu;
@@ -22,18 +19,29 @@ public class Game {
     do {
       System.out.println(board);
 
-      int action = menu.doAction();
-      if (action == 0) {
+      handleAction(menu.doAction());
+    } while (gameRunning);
+  }
+
+  private void handleAction(int action) {
+    switch (action) {
+      case 0:
+        menu.actionNotif(board.getPlayer().getPlayerState());
         gameRunning = false;
-      } else if (action == 1) {
+        break;
+      case 1:
         String direction = menu.moveToDirection();
-        board.movePlayer(direction);
-        if (board.getPlayer().getRoom().getItem() instanceof Exit
-            || board.getPlayer().getRoom().getItem() instanceof Mine) {
+        board.getPlayer().move(direction, board.playerPosition(), board.getMatrice());
+
+        if (board.getPlayer().getPlayerState() == PlayerState.EXIT
+            || board.getPlayer().getPlayerState() == PlayerState.LOST) {
+          menu.actionNotif(board.getPlayer().getPlayerState());
           gameRunning = false;
         }
-      }
-    } while (gameRunning);
+
+      default:
+        break;
+    }
   }
 
   public boolean isGameRunning() {
