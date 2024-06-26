@@ -28,6 +28,5 @@ class GameTest {
 
     // then
     Assertions.assertEquals(false, game.isGameRunning());
-
   }
 }
